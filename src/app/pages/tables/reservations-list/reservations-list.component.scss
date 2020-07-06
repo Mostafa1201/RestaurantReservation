@@ -1,0 +1,53 @@
+.grid-wrapper{
+    width: 90%;
+}
+.reservation-wrapper{
+    display: flex;
+    width: 100%;
+    padding: 1rem;
+    margin: 2rem;
+}
+
+.reservation{
+    margin-bottom: 3rem;
+    padding: 2rem;
+    overflow: auto;
+    background: #546e7a !important;
+    color: #FFF !important;
+    box-shadow: 4px 5px 4px 0px rgba(0, 0, 0, 0.2), 3px 0px 0px 0px rgba(0, 0, 0, 0.14), 2px 1px 3px 1px rgba(0, 0, 0, 0.12);
+}
+
+.content{
+    display: flex;
+}
+
+.tp-pagination{
+    display: flex;
+    justify-content: center;
+}
+
+.searchbar{
+    text-align: center;
+}
+
+.mat-form-field {
+    width: 25%;
+}
+
+.mat-form-field input[type="text"]:focus {
+    outline : none;
+}
+
+.center-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reservation-actions {
+    border-top: 1px solid rgba(160,160,160,0.2);
+}
+
+.btn{
+    margin: 1rem 2rem 0 0;
+}

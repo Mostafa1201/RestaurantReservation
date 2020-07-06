@@ -19,9 +19,10 @@ import { ReservationFormComponent } from './reservation-form/reservation-form.co
 import { AddReservationComponent } from './add-reservation/add-reservation.component';
 import { TableFormComponent } from './table-form/table-form.component';
 import { AddTableComponent } from './add-table/add-table.component';
+import { ReservationsListComponent } from './reservations-list/reservations-list.component';
 
 @NgModule({
-	declarations: [TablesListComponent, ReservationFormComponent, AddReservationComponent, TableFormComponent, AddTableComponent],
+	declarations: [TablesListComponent, ReservationFormComponent, AddReservationComponent, TableFormComponent, AddTableComponent, ReservationsListComponent],
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,

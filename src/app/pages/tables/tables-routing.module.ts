@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { TablesListComponent } from './tables-list/tables-list.component';
 import { AddReservationComponent } from './add-reservation/add-reservation.component';
 import { AddTableComponent } from './add-table/add-table.component';
+import { ReservationsListComponent } from './reservations-list/reservations-list.component';
 const routes: Routes = [
 	{
 		path: "",
@@ -11,6 +12,10 @@ const routes: Routes = [
 	{
 		path: "reservations",
 		children: [
+			{
+				path: "",
+				component: ReservationsListComponent
+			},
 			{
 				path: ":id/add",
 				component: AddReservationComponent

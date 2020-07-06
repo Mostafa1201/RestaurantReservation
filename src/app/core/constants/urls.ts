@@ -21,6 +21,7 @@ export default {
     },
     reservation: {
         add: API_URL + "reservations/add",
-        close: API_URL + "reservations/close"
+        close: API_URL + "reservations/close",
+        list: API_URL + "reservations/list",
     }
 }

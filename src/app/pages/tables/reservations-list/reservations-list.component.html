@@ -1,0 +1,62 @@
+<div class="container-fluid grid-wrapper max-height">
+    <div class="reservation-wrapper row">
+        <div class="col-md-12">
+            <div class="col-md-8">
+                <mat-form-field>
+                    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
+                       [min]="minDate" [max]="maxDate" [disabled]="disabled">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+                       [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond"
+                       [touchUi]="touchUi" [color]="color" [enableMeridian]="enableMeridian" 
+                       [disableMinute]="disableMinute" [hideTime]="hideTime">
+                    </ngx-mat-datetime-picker>
+                 </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <button (click)="filterReservationsList()" class="btn btn-primary">Filter By Date</button>
+            </div>
+        </div>
+        <div *ngFor="let reservation of reservations" class="col-md-4">
+            <div class="reservation">
+                <div class="title">
+                    <h4>{{ reservation?.table?.name }}</h4>
+                </div>
+                <div class="content">
+                    <span>User name: </span><p>{{ reservation?.user?.name }}</p>
+                </div>
+                <div class="content">
+                    <span>No Of Seats: </span><p>{{ reservation.noOfSeats }}</p>
+                </div>
+                <div class="content">
+                    <span>Date: </span><p>{{ reservation.date }}</p>
+                </div>
+                <div class="table-actions">
+                    <div>
+                        <a *ngIf="user.type == 'admin'" (click)="closeReservation(table.id)" class="btn btn-danger">Finish Reservation</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div *ngIf="totalItems > 0" class="row">
+        <div class="col-md-12 tp-pagination">
+            <pagination 
+            [boundaryLinks]="true"
+            [totalItems]="totalItems"
+            [maxSize]="5"
+            (pageChanged)="onPageChanged($event)"
+            [(ngModel)]="currentPage" 
+            [itemsPerPage]="requestObject.size"
+            previousText="&lsaquo;"
+            nextText="&rsaquo;"
+            firstText="&laquo;"
+            lastText="&raquo;">
+            </pagination>
+        </div>
+    </div>
+    <div *ngIf="totalItems == 0" class="row center-content">
+        <h1>No Reservations Found</h1>
+    </div>
+</div>
