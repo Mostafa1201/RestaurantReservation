@@ -1,0 +1,8 @@
+
+<p *ngIf="backendError" class="alert alert-danger"  >
+    {{backendError}}
+  </p>
+  <app-reservation-form
+    [title]="'Add'"
+    (onFormSubmit)="addReservation($event)"
+  ></app-reservation-form>

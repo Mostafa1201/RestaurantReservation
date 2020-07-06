@@ -1,0 +1,75 @@
+<div class="container-fluid grid-wrapper max-height">
+    <div class="table-wrapper row">
+        <div class="col-md-12">
+            <a [routerLink]="'/tables/add'" class="btn btn-primary custom-btn">Add Table</a>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-8">
+                <mat-form-field>
+                    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
+                       [min]="minDate" [max]="maxDate" [disabled]="disabled">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+                       [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond"
+                       [touchUi]="touchUi" [color]="color" [enableMeridian]="enableMeridian" 
+                       [disableMinute]="disableMinute" [hideTime]="hideTime">
+                    </ngx-mat-datetime-picker>
+                 </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <button (click)="filterTablesList()" class="btn btn-primary">Filter By Date</button>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="searchbar">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Search Tables by number of seats</mat-label>
+                    <input matInput type="number" placeholder="Search Tables by no of seats available : ex: 5" [(ngModel)]="requestObject.noOfSeats"
+                    (ngModelChange)="searchTables($event)">
+                </mat-form-field>
+            </div>
+        </div>
+        <div *ngFor="let table of restaurantTables" class="col-md-4">
+            <div class="table">
+                <div class="title">
+                    <h4>{{ table.name }}</h4>
+                </div>
+                <div class="content">
+                    <span>No Of Seats: </span><p>{{ table.noOfSeats }}</p>
+                </div>
+                <div class="content">
+                    <span>is Available: </span><p>{{ table.isAvailable }}</p>
+                </div>
+                <div class="table-actions">
+                    <div>
+                        <!-- <a *ngIf="user.type == 'admin'" (click)="closeReservation(table.id)" class="btn btn-danger">Finish Reservation</a> -->
+                        <a [routerLink]="'/reservations/' + table.id + '/add/'" class="btn btn-primary">Book</a>
+                    </div>
+                    <div *ngIf="table.is_available">
+                        <button class="btn btn-secondary" disabled>Table Unavailable</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div *ngIf="totalItems > 0" class="row">
+        <div class="col-md-12 tp-pagination">
+            <pagination 
+            [boundaryLinks]="true"
+            [totalItems]="totalItems"
+            [maxSize]="5"
+            (pageChanged)="onPageChanged($event)"
+            [(ngModel)]="currentPage" 
+            [itemsPerPage]="requestObject.size"
+            previousText="&lsaquo;"
+            nextText="&rsaquo;"
+            firstText="&laquo;"
+            lastText="&raquo;">
+            </pagination>
+        </div>
+    </div>
+    <div *ngIf="totalItems == 0" class="row center-content">
+        <h1>No Tables Found</h1>
+    </div>
+</div>

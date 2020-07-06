@@ -1,0 +1,32 @@
+<div class="vertical-middle-container">
+    <div class="row vertical-middle">
+        <div class="vertical-inner login-inner">
+            <h2>Login</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" class="form-control" />
+                    <p class="validation-error" *ngIf="isControlHasError('email','required')">Email is Required</p>
+                    <p class="validation-error" *ngIf="isControlHasError('email','email')">Email is not valid</p>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" />
+                    <p class="validation-error" *ngIf="isControlHasError('password','required')">Password is Required</p>
+                    <p class="validation-error" *ngIf="isControlHasError('password','minlength')">Password should be min of 3 characters</p>
+                    <p class="validation-error" *ngIf="isControlHasError('password','maxlength')">Password should be max of 100 characters</p>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary login-button">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Login
+                    </button>
+                    <a routerLink="/auth/register" class="btn btn-primary">Register</a>
+                </div>
+            </form>
+            <div *ngIf="errorMessage">
+                <p class="validation-error">{{errorMessage}}</p>
+            </div>
+        </div>
+    </div>
+</div>

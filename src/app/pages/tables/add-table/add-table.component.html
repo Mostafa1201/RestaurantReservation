@@ -1,0 +1,8 @@
+
+<p *ngIf="backendError" class="alert alert-danger"  >
+    {{backendError}}
+  </p>
+  <app-table-form
+    [title]="'Add'"
+    (onFormSubmit)="addTable($event)"
+  ></app-table-form>
